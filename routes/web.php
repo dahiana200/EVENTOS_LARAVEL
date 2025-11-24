@@ -9,44 +9,58 @@ Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
-Route::get('/registro', function () {
-    return view('auth.register');
-})->name('registro');
-
-// Página "Acerca de nosotros"
+// Página Sobre Nosotros
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Página "Quienes Somos" 
+// Página "Quienes Somos"
 Route::get('/somos', function () {
     return view('somos');
 })->name('somos');
 
-// Página de Servicios
+// Quienes somos privado (requiere login)
+Route::get('/somos-privado', function () {
+    return view('somos-privado');
+})->middleware('auth')->name('somos.privado');
+
+// Página Servicios
 Route::get('/servicios', function () {
     return view('servicios');
 })->name('servicios');
 
-// Página de contacto → **ahora con controlador**
+// Página Contacto
 Route::get('/contacto', [ContactController::class, 'index'])->name('contacto');
 Route::post('/contacto', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Página de registro de usuarios
+// // Vista de Login
+// Route::get('/login', function () {
+//     return view('auth.register');
+// })->name('login');
+
+// Vista de Registro
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-// Página de inicio de sesión
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Página de usuario (requiere login)
+Route::get('/usuario', function () {
+    return view('index_user');
+})->name('usuario');
+// ->middleware('auth')
+    
+Route::get('/logout', function () {
+    // Redirige al inicio del sitio, solo para evitar errores
+    return redirect()->route('inicio');
+})->name('logout');
 
-// Ruta para el formulario del newsletter (pie de página)
+// Suscripción al boletín
 Route::post('/newsletter/subscribe', function (Request $request) {
+
     $request->validate([
-        'email' => 'required|email'
+        'email' => 'required|email',
     ]);
 
     return back()->with('success', '¡Gracias por suscribirte a nuestro boletín!');
+    
 })->name('newsletter.subscribe');
