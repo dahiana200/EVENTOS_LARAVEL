@@ -6,7 +6,7 @@
 
 @include('partials.navbar')
 
-<section class="breadcrumbs-custom bg-image" style="background-image: url({{ asset('images/1111.jpg') }});">
+<section class="breadcrumbs-custom bg-image" style="background-image: url({{ asset('../../public/images/1111.jpg') }});">
     <div class="shell">
         <h1 class="breadcrumbs-custom__title">Contáctanos</h1>
         <ul class="breadcrumbs-custom__path">

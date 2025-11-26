@@ -3,7 +3,7 @@
 @section('title', 'Quiénes Somos')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('../../../public/css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @endsection
 
